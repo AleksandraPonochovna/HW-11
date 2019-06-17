@@ -1,12 +1,13 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class TaskApp {
-    private Scanner scn = new Scanner(System.in);
+
     public static void main(String[] args) {
         //Task 1
         System.out.println("Task 1 ");
@@ -35,42 +36,28 @@ public class TaskApp {
         System.out.println(getCallerClassAndMethodName());
     }
 
-    private static String getCallerClassAndMethodName() {
-        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        String message;
-        if (stackTraceElements.length >= 4) {
-            StackTraceElement element = stackTraceElements[2];
-            String className = element.getClassName();
-            String methodName = element.getMethodName();
-            message = className + ": " + methodName;
-        } else {
+    public static String getCallerClassAndMethodName() {
+        StackTraceElement[] stackTraceElements = new Exception().getStackTrace();
+        if (stackTraceElements.length < 3) {
             return null;
+        } else {
+            return stackTraceElements[2].getClassName() + "#" + stackTraceElements[2].getMethodName();
         }
-        return message;
     }
 
     private void calculating() {
-        ArrayList<Integer> numbers;
-        String string;
-        String[] strings;
-        System.out.println("Enter your numbers across space: ");
-        string = scn.nextLine();
-        strings = string.split(" ");
-        numbers = new ArrayList<>(strings.length);
-        try {
-            for (String s : strings) {
-                numbers.add(Integer.parseInt(s));
+        try (Scanner scn = new Scanner(System.in)) {
+            String[] strings = scn.nextLine().split(" ");
+            ArrayList<Integer> numbers = new ArrayList<>();
+            for (int i = 1; i < strings.length; i += 2) {
+                numbers.add(Integer.parseInt(strings[i]));
             }
-        } catch (Throwable t) {
-        }
-        for (int i = 1; i < numbers.size(); i += 2) {
-            numbers.remove(i);
-            i--;
-        }
-        System.out.println("Result is: ");
-        for (int i = numbers.size() - 1; i >= 0; i--) {
-            System.out.println(numbers.get(i));
+            Collections.reverse(numbers);
+            for (Integer number : numbers) {
+                System.out.print(number + " ");
+            }
+            System.out.println(" ");
+        } catch (RuntimeException ex) {
         }
     }
 }
-
