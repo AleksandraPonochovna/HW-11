@@ -8,7 +8,8 @@ import java.util.Set;
 public class TaskApp {
     private Scanner scn = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("Task 3 ");
+        //Task 1
+        System.out.println("Task 1 ");
         SymmetricDifference<Integer> app = new SymmetricDifference();
         Set<Integer> firstHashSet = new HashSet<>();
         Set<Integer> secondHashSet = new HashSet<>();
@@ -21,10 +22,10 @@ public class TaskApp {
         Set<Integer> resultSet = app.symmetricDifference(firstHashSet, secondHashSet);
         app.printSet(resultSet); // 0 3
         TaskApp main = new TaskApp();
-        //Task 1
+        //Task 2
         System.out.println("Task 2 ");
         main.calculating();
-        //Task 2 getCallerClassAndMethodName()
+        //Task 3 getCallerClassAndMethodName()
         System.out.println("Task 3 ");
         System.out.println(getCallerClassAndMethodName());
         anotherMethod();
