@@ -8,14 +8,13 @@ public class SymmetricDifference<T> {
     public static <T> Set<T> symmetricDifference(Set<? extends T> set1, Set<? extends T> set2) {
 
         Set<T> resultSet = new HashSet<>();
-        for (T t : set1) {
-            if (!set2.contains(t)) {
-                resultSet.add(t);
-            }
-        }
-        for (T t : set2) {
-            if (!set1.contains(t)) {
-                resultSet.add(t);
+        resultSet.addAll(set1);
+        resultSet.addAll(set2);
+        Iterator itr = resultSet.iterator();
+        while (itr.hasNext()) {
+            T temp = (T) itr.next();
+            if (set1.contains(temp) && set2.contains(temp)) {
+                itr.remove();
             }
         }
         return resultSet;
