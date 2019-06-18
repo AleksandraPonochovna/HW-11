@@ -56,7 +56,7 @@ public class TaskApp {
             for (Integer number : numbers) {
                 System.out.print(number + " ");
             }
-            System.out.println(" ");
+            System.out.println();
         } catch (RuntimeException ex) {
         }
     }
