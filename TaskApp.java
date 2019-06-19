@@ -57,8 +57,8 @@ public class TaskApp {
                 System.out.print(number + " ");
             }
             System.out.println();
-       } catch (RuntimeException ex) {
-            throw new RuntimeException("Exception");
-       }
+        } catch (RuntimeException ex) {
+            System.out.println("Some Exception.");
+        }
     }
 }
